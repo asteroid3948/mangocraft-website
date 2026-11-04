@@ -3,23 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MangoCraft &bull; Opening November 15</title>
-  <meta name="description" content="MangoCraft SkyGen - Java & Bedrock: play.mangocraft.xyz">
+  <title>Mango Craft &bull; Coming November 15th</title>
+  <meta name="description" content="Mango Craft - Coming November 15th. Play on Java & Bedrock: play.mangocraft.xyz">
+  <link rel="icon" type="image/jpeg" href="logo.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #0c0a09;
-      --card-bg: #14110e;
-      --card-border: #231e18;
       --orange: #ff7a18;
-      --orange-bright: #ff9436;
-      --orange-glow: rgba(255, 122, 24, 0.15);
+      --orange-bright: #ff9330;
       --white: #ffffff;
-      --gray-light: #e4dfda;
-      --gray-muted: #887f77;
-      --gray-dark: #1b1713;
+      --border: rgba(255, 255, 255, 0.08);
+      --card-bg: rgba(20, 17, 14, 0.7);
     }
 
     * {
@@ -31,209 +28,207 @@
     body {
       background-color: var(--bg);
       background-image: 
-        radial-gradient(ellipse at 50% 0%, rgba(255, 122, 24, 0.12) 0%, transparent 60%),
-        radial-gradient(circle at 1px 1px, #1c1814 1px, transparent 0);
-      background-size: 100% 100%, 28px 28px;
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255, 122, 24, 0.15), transparent),
+        radial-gradient(circle at 1px 1px, #1a1612 1px, transparent 0);
+      background-size: 100% 100%, 32px 32px;
       color: var(--white);
-      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* TOP NAVBAR */
+    header {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 24px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    /* TOP LEFT: Brand with Icon */
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: var(--white);
+    }
+
+    .brand-logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      object-fit: cover;
+      border: 1px solid rgba(255, 122, 24, 0.3);
+      box-shadow: 0 4px 16px rgba(255, 122, 24, 0.2);
+    }
+
+    .brand-name {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-name span {
+      color: var(--orange-bright);
+    }
+
+    /* TOP RIGHT: IP Box with copy */
+    .ip-trigger {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      padding: 8px 10px 8px 16px;
+      border-radius: 12px;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s ease;
+    }
+
+    .ip-trigger:hover {
+      border-color: rgba(255, 122, 24, 0.4);
+      background: rgba(26, 21, 17, 0.85);
+    }
+
+    .ip-trigger:active {
+      transform: scale(0.98);
+    }
+
+    .ip-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+    }
+
+    .ip-address {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.01em;
+    }
+
+    .ip-sub {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #9c9187;
+    }
+
+    .ip-sub .tag {
+      color: var(--orange-bright);
+    }
+
+    .copy-button {
+      background: var(--orange);
+      color: #0c0a09;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 6px 12px;
+      border-radius: 8px;
+      transition: background 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .ip-trigger:hover .copy-button {
+      background: var(--orange-bright);
+    }
+
+    /* MIDDLE: Coming November 15th */
+    main {
+      flex: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 24px;
-      -webkit-font-smoothing: antialiased;
+      text-align: center;
+      padding: 40px 24px;
     }
 
-    .wrap {
-      width: 100%;
-      max-width: 480px;
+    .center-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
     }
 
-    /* Top pill */
-    .status-badge {
+    .center-logo {
+      width: 140px;
+      height: 140px;
+      border-radius: 32px;
+      object-fit: cover;
+      box-shadow: 0 20px 50px rgba(255, 122, 24, 0.25), 0 0 0 1px rgba(255, 122, 24, 0.2);
+      margin-bottom: 8px;
+    }
+
+    .pill-coming {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 6px 14px;
+      padding: 6px 16px;
       border-radius: 9999px;
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
+      background: rgba(255, 122, 24, 0.1);
+      border: 1px solid rgba(255, 122, 24, 0.25);
       font-size: 12px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--orange-bright);
-      margin-bottom: 28px;
     }
 
-    .status-dot {
-      width: 7px;
-      height: 7px;
+    .pill-dot {
+      width: 6px;
+      height: 6px;
       background: var(--orange);
       border-radius: 50%;
       box-shadow: 0 0 8px var(--orange);
-      animation: pulse 2s ease-in-out infinite;
     }
 
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.35; transform: scale(0.85); }
+    h1.coming-title {
+      font-size: clamp(38px, 6vw, 68px);
+      font-weight: 900;
+      letter-spacing: -0.035em;
+      line-height: 1.08;
+      color: #ffffff;
     }
 
-    /* Main Header */
-    h1 {
-      font-size: 44px;
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.05;
-      margin-bottom: 12px;
-    }
-
-    h1 span.highlight {
-      color: var(--orange);
-      background: linear-gradient(180deg, #ffaa5e 0%, #ff7a18 100%);
+    h1.coming-title span {
+      background: linear-gradient(180deg, #ffffff 10%, #ffaa5e 60%, #ff7a18 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    .tagline {
-      font-size: 15px;
-      line-height: 1.5;
-      color: var(--gray-muted);
-      margin-bottom: 32px;
-    }
-
-    /* Main Box */
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 16px;
+    /* FOOTER */
+    footer {
+      width: 100%;
       padding: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
+      text-align: center;
+      font-size: 12px;
+      color: #6a6159;
     }
 
-    /* Date row */
-    .date-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      padding-bottom: 18px;
-      border-bottom: 1px solid var(--card-border);
-    }
-
-    .date-label {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--gray-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .date-val {
-      font-size: 20px;
-      font-weight: 800;
-      color: var(--white);
-      letter-spacing: -0.01em;
-    }
-
-    /* IP Box */
-    .ip-box {
-      background: var(--gray-dark);
-      border: 1px solid var(--card-border);
-      border-radius: 12px;
-      padding: 14px 16px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
-    .ip-box:hover {
-      border-color: #383027;
-      background: #1f1b16;
-    }
-
-    .ip-box:active {
-      transform: scale(0.99);
-    }
-
-    .ip-text {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--white);
-      letter-spacing: 0.02em;
-    }
-
-    .copy-pill {
-      background: var(--orange);
-      color: #000;
-      font-size: 11px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      padding: 6px 12px;
-      border-radius: 6px;
-      transition: background 0.15s ease;
-      white-space: nowrap;
-    }
-
-    .ip-box:hover .copy-pill {
-      background: var(--orange-bright);
-    }
-
-    /* Info bullets */
-    .details {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    .detail-item {
-      background: var(--gray-dark);
-      border: 1px solid rgba(255, 255, 255, 0.04);
-      border-radius: 10px;
-      padding: 12px 14px;
-    }
-
-    .detail-label {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--gray-muted);
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-
-    .detail-val {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--gray-light);
-    }
-
-    /* Footer links */
-    .links-row {
-      margin-top: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 13px;
-      color: var(--gray-muted);
-    }
-
-    .links-row a {
-      color: var(--gray-light);
+    footer a {
+      color: #9c9187;
       text-decoration: none;
-      font-weight: 600;
       transition: color 0.15s ease;
     }
 
-    .links-row a:hover {
+    footer a:hover {
       color: var(--orange);
     }
 
@@ -241,77 +236,94 @@
     .toast {
       position: fixed;
       bottom: 24px;
-      background: var(--white);
-      color: var(--bg);
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #ffffff;
+      color: #0c0a09;
       font-size: 13px;
       font-weight: 700;
-      padding: 10px 18px;
+      padding: 10px 20px;
       border-radius: 9999px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
       opacity: 0;
-      transform: translateY(10px);
       pointer-events: none;
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 100;
     }
 
     .toast.active {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 640px) {
+      header {
+        padding: 16px 20px;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+      }
+      .brand-name {
+        font-size: 20px;
+      }
+      .center-logo {
+        width: 110px;
+        height: 110px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <div class="wrap">
-    <div class="status-badge">
-      <div class="status-dot"></div>
-      Coming Soon
-    </div>
+  <!-- TOP HEADER -->
+  <header>
+    <!-- TOP LEFT: Icon + Mango Craft -->
+    <a href="/" class="brand">
+      <img src="logo.jpg" alt="Mango Craft" class="brand-logo" />
+      <span class="brand-name">Mango<span>Craft</span></span>
+    </a>
 
-    <h1>Mango<span class="highlight">Craft</span></h1>
-    <p class="tagline">SkyGen reimagined. Island building, generators, custom economy, and zero pay-to-win.</p>
-
-    <div class="card">
-      <div class="date-row">
-        <span class="date-label">Launch Date</span>
-        <span class="date-val">Nov 15, 2026</span>
+    <!-- TOP RIGHT: Server IP + Click to Copy + Bedrock & Java -->
+    <div class="ip-trigger" id="ipBox" onclick="copyIP()" title="Click to copy server IP">
+      <div class="ip-meta">
+        <span class="ip-address">play.mangocraft.xyz</span>
+        <span class="ip-sub"><span class="tag">Java</span> &bull; <span class="tag">Bedrock</span></span>
       </div>
-
-      <div class="ip-box" onclick="copy()" title="Click to copy server IP">
-        <span class="ip-text">play.mangocraft.xyz</span>
-        <span class="copy-pill" id="btn">Copy</span>
-      </div>
-
-      <div class="details">
-        <div class="detail-item">
-          <div class="detail-label">Java Edition</div>
-          <div class="detail-val">1.21.x (Port: 25565)</div>
-        </div>
-        <div class="detail-item">
-          <div class="detail-label">Bedrock Edition</div>
-          <div class="detail-val">Latest (Port: 19132)</div>
-        </div>
-      </div>
+      <div class="copy-button" id="copyBtn">Copy</div>
     </div>
+  </header>
 
-    <div class="links-row">
-      <span>mangocraft.xyz</span>
-      <a href="https://discord.gg/mangocraft" target="_blank" rel="noopener">discord.gg/mangocraft &rarr;</a>
+  <!-- MIDDLE: Coming November 15th -->
+  <main>
+    <div class="center-content">
+      <img src="logo.jpg" alt="Mango Craft Logo" class="center-logo" />
+      <div class="pill-coming">
+        <span class="pill-dot"></span>
+        Launch Target
+      </div>
+      <h1 class="coming-title">
+        Coming <span>November 15th</span>
+      </h1>
     </div>
-  </div>
+  </main>
 
-  <div class="toast" id="toast">Copied play.mangocraft.xyz</div>
+  <!-- FOOTER -->
+  <footer>
+    &copy; 2026 mangocraft.xyz &bull; <a href="https://discord.gg/mangocraft" target="_blank" rel="noopener">discord.gg/mangocraft</a>
+  </footer>
+
+  <div class="toast" id="toast">Copied play.mangocraft.xyz!</div>
 
   <script>
-    function copy() {
+    function copyIP() {
       navigator.clipboard.writeText("play.mangocraft.xyz").then(() => {
-        const t = document.getElementById("toast");
-        const b = document.getElementById("btn");
-        b.innerText = "Copied!";
-        t.classList.add("active");
+        const toast = document.getElementById("toast");
+        const btn = document.getElementById("copyBtn");
+        btn.innerText = "Copied!";
+        toast.classList.add("active");
         setTimeout(() => {
-          t.classList.remove("active");
-          b.innerText = "Copy";
+          toast.classList.remove("active");
+          btn.innerText = "Copy";
         }, 1800);
       });
     }
