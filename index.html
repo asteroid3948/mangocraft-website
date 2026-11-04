@@ -153,54 +153,14 @@
     main {
       flex: 1;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
       padding: 40px 24px;
     }
 
-    .center-content {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .center-logo {
-      width: 140px;
-      height: 140px;
-      border-radius: 32px;
-      object-fit: cover;
-      box-shadow: 0 20px 50px rgba(255, 122, 24, 0.25), 0 0 0 1px rgba(255, 122, 24, 0.2);
-      margin-bottom: 8px;
-    }
-
-    .pill-coming {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 16px;
-      border-radius: 9999px;
-      background: rgba(255, 122, 24, 0.1);
-      border: 1px solid rgba(255, 122, 24, 0.25);
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--orange-bright);
-    }
-
-    .pill-dot {
-      width: 6px;
-      height: 6px;
-      background: var(--orange);
-      border-radius: 50%;
-      box-shadow: 0 0 8px var(--orange);
-    }
-
     h1.coming-title {
-      font-size: clamp(38px, 6vw, 68px);
+      font-size: clamp(40px, 7vw, 76px);
       font-weight: 900;
       letter-spacing: -0.035em;
       line-height: 1.08;
@@ -211,25 +171,6 @@
       background: linear-gradient(180deg, #ffffff 10%, #ffaa5e 60%, #ff7a18 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-    }
-
-    /* FOOTER */
-    footer {
-      width: 100%;
-      padding: 24px;
-      text-align: center;
-      font-size: 12px;
-      color: #6a6159;
-    }
-
-    footer a {
-      color: #9c9187;
-      text-decoration: none;
-      transition: color 0.15s ease;
-    }
-
-    footer a:hover {
-      color: var(--orange);
     }
 
     /* Toast */
@@ -253,7 +194,7 @@
 
     .toast.active {
       opacity: 1;
-      transform: translateX(-50%) translateY(0);
+      transform: translateY(0);
     }
 
     @media (max-width: 640px) {
@@ -265,10 +206,6 @@
       }
       .brand-name {
         font-size: 20px;
-      }
-      .center-logo {
-        width: 110px;
-        height: 110px;
       }
     }
   </style>
@@ -295,22 +232,10 @@
 
   <!-- MIDDLE: Coming November 15th -->
   <main>
-    <div class="center-content">
-      <img src="logo.jpg" alt="Mango Craft Logo" class="center-logo" />
-      <div class="pill-coming">
-        <span class="pill-dot"></span>
-        Launch Target
-      </div>
-      <h1 class="coming-title">
-        Coming <span>November 15th</span>
-      </h1>
-    </div>
+    <h1 class="coming-title">
+      Coming <span>November 15th</span>
+    </h1>
   </main>
-
-  <!-- FOOTER -->
-  <footer>
-    &copy; 2026 mangocraft.xyz &bull; <a href="https://discord.gg/mangocraft" target="_blank" rel="noopener">discord.gg/mangocraft</a>
-  </footer>
 
   <div class="toast" id="toast">Copied play.mangocraft.xyz!</div>
 
