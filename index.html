@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MangoCraft - Coming Soon</title>
+  <meta name="description" content="MangoCraft SkyGen - Coming Soon! Connect on Java & Bedrock at play.mangocraft.xyz" />
+  <meta property="og:title" content="MangoCraft - Coming Soon" />
+  <meta property="og:description" content="Juicy SkyGen adventures coming soon. Join via Java & Bedrock: play.mangocraft.xyz" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://mangocraft.xyz" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary-orange: #ff7a18;
+      --secondary-orange: #ff9f43;
+      --deep-mango: #e65c00;
+      --leaf-green: #2ecc71;
+      --bg-dark: #12100e;
+      --bg-card: rgba(28, 24, 21, 0.75);
+      --border-card: rgba(255, 159, 67, 0.25);
+      --text-main: #ffffff;
+      --text-muted: #d4cfcb;
+      --accent-glow: rgba(255, 122, 24, 0.35);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      background: radial-gradient(circle at 50% 20%, #301a0a 0%, #15110d 50%, #0d0a08 100%);
+      color: var(--text-main);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Ambient background glows */
+    .glow-bg {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--accent-glow) 0%, rgba(0,0,0,0) 70%);
+      top: -150px;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+      z-index: 0;
+      animation: pulse 6s ease-in-out infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% { transform: translateX(-50%) scale(0.9); opacity: 0.6; }
+      100% { transform: translateX(-50%) scale(1.15); opacity: 0.9; }
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      width: 100%;
+      text-align: center;
+      background: var(--bg-card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-card);
+      border-radius: 28px;
+      padding: 3.2rem 2.2rem;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7),
+                  0 0 40px -5px rgba(255, 122, 24, 0.15);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255, 122, 24, 0.12);
+      border: 1px solid rgba(255, 159, 67, 0.35);
+      color: #ffa552;
+      padding: 0.45rem 1.1rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1.5rem;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--primary-orange);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--primary-orange);
+      animation: blink 2s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
+    }
+
+    .logo-wrap {
+      margin-bottom: 0.75rem;
+    }
+
+    h1.brand-title {
+      font-family: 'Fredoka', cursive, sans-serif;
+      font-size: 3.6rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+      background: linear-gradient(135deg, #ffffff 25%, #ffb366 65%, #ff7a18 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.6rem;
+    }
+
+    .subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-width: 480px;
+      margin: 0 auto 2.2rem;
+    }
+
+    /* Date / Coming Soon Highlight Box */
+    .date-card {
+      background: linear-gradient(180deg, rgba(255, 122, 24, 0.12) 0%, rgba(230, 92, 0, 0.04) 100%);
+      border: 1px dashed rgba(255, 159, 67, 0.4);
+      border-radius: 18px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 2.2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .date-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #ffaa5e;
+      font-weight: 600;
+    }
+
+    .date-value {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #ffffff;
+      text-shadow: 0 2px 10px rgba(255, 122, 24, 0.4);
+    }
+
+    /* Server IP Card */
+    .server-card {
+      background: rgba(14, 11, 9, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      padding: 1.25rem;
+      margin-bottom: 1.8rem;
+      transition: all 0.25s ease;
+    }
+
+    .server-card:hover {
+      border-color: rgba(255, 159, 67, 0.4);
+      box-shadow: 0 8px 24px -6px rgba(255, 122, 24, 0.15);
+    }
+
+    .platforms-tag {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.9rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #e0d7ce;
+    }
+
+    .platform-pill {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 0.2rem 0.65rem;
+      border-radius: 6px;
+      color: #ffffff;
+      font-size: 0.78rem;
+    }
+
+    .ip-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #090706;
+      border: 1px solid rgba(255, 122, 24, 0.3);
+      border-radius: 12px;
+      padding: 0.75rem 1rem;
+      cursor: pointer;
+      position: relative;
+      user-select: none;
+      transition: transform 0.15s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    .ip-box:hover {
+      border-color: var(--secondary-orange);
+      background: #0f0b09;
+    }
+
+    .ip-box:active {
+      transform: scale(0.98);
+    }
+
+    .ip-text {
+      font-family: 'Fredoka', monospace, sans-serif;
+      font-size: 1.25rem;
+      letter-spacing: 0.03em;
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .copy-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: linear-gradient(135deg, var(--primary-orange), var(--deep-mango));
+      color: #ffffff;
+      border: none;
+      outline: none;
+      padding: 0.5rem 0.95rem;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(255, 122, 24, 0.35);
+      transition: filter 0.2s ease;
+    }
+
+    .copy-btn:hover {
+      filter: brightness(1.12);
+    }
+
+    .bedrock-note {
+      font-size: 0.78rem;
+      color: #9e9791;
+      margin-top: 0.6rem;
+    }
+
+    .footer {
+      font-size: 0.82rem;
+      color: #7d7570;
+      margin-top: 0.5rem;
+    }
+
+    .footer span {
+      color: #ff9f43;
+    }
+
+    /* Copied toast notification */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: #1f1915;
+      color: #fff;
+      border: 1px solid var(--secondary-orange);
+      padding: 0.7rem 1.4rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    @media (max-width: 550px) {
+      .container {
+        padding: 2.2rem 1.3rem;
+      }
+      h1.brand-title {
+        font-size: 2.7rem;
+      }
+      .ip-text {
+        font-size: 1.05rem;
+      }
+      .copy-btn {
+        padding: 0.45rem 0.75rem;
+        font-size: 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="glow-bg"></div>
+
+  <main class="container">
+    <div class="badge">
+      <span class="badge-dot"></span>
+      Under Active Development
+    </div>
+
+    <div class="logo-wrap">
+      <h1 class="brand-title">🥭 MangoCraft</h1>
+    </div>
+
+    <p class="subtitle">
+      A fresh, custom SkyGen Minecraft adventure is ripening. Get ready to harvest, trade, expand your empire, and dominate the skies.
+    </p>
+
+    <!-- Coming Soon Target Date Box -->
+    <div class="date-card">
+      <span class="date-label">Official Launch Target</span>
+      <span class="date-value" id="launchDate">Winter 2026</span>
+    </div>
+
+    <!-- Server Connection Card -->
+    <div class="server-card">
+      <div class="platforms-tag">
+        <span>Available On:</span>
+        <span class="platform-pill">☕ Java</span>
+        <span class="platform-pill">📱 Bedrock</span>
+      </div>
+
+      <div class="ip-box" id="ipContainer" onclick="copyIP()" title="Click to copy server address">
+        <span class="ip-text" id="serverIp">play.mangocraft.xyz</span>
+        <button class="copy-btn" id="copyBtn" type="button">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+          </svg>
+          <span id="btnText">Copy IP</span>
+        </button>
+      </div>
+
+      <p class="bedrock-note">Bedrock uses the standard port: <code>19132</code></p>
+    </div>
+
+    <footer class="footer">
+      &copy; 2026 <span>mangocraft.xyz</span> &bull; Not an official Minecraft product.
+    </footer>
+  </main>
+
+  <div class="toast" id="toast">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2ecc71" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+    <span>Copied play.mangocraft.xyz to clipboard!</span>
+  </div>
+
+  <script>
+    function copyIP() {
+      const ip = document.getElementById("serverIp").innerText;
+      navigator.clipboard.writeText(ip).then(() => {
+        const toast = document.getElementById("toast");
+        const btnText = document.getElementById("btnText");
+        
+        btnText.innerText = "Copied!";
+        toast.classList.add("show");
+        
+        setTimeout(() => {
+          toast.classList.remove("show");
+          btnText.innerText = "Copy IP";
+        }, 2200);
+      }).catch(err => {
+        console.error('Failed to copy: ', err);
+      });
+    }
+  </script>
+</body>
+</html>
