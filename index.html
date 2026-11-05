@@ -8,7 +8,7 @@
   <link rel="icon" type="image/jpeg" href="logo.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #0c0a09;
@@ -149,28 +149,157 @@
       background: var(--orange-bright);
     }
 
-    /* MIDDLE: Coming November 15th */
+    /* MAIN CONTAINER: CENTER TITLE + SIDE COUNTDOWN & PERK */
     main {
       flex: 1;
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 30px 32px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 40px 24px;
+      justify-content: space-between;
+      gap: 48px;
+    }
+
+    .hero-center {
+      flex: 1;
     }
 
     h1.coming-title {
-      font-size: clamp(40px, 7vw, 76px);
+      font-size: clamp(40px, 6.5vw, 76px);
       font-weight: 900;
       letter-spacing: -0.035em;
-      line-height: 1.08;
+      line-height: 1.05;
       color: #ffffff;
+      margin-bottom: 12px;
     }
 
     h1.coming-title span {
       background: linear-gradient(180deg, #ffffff 10%, #ffaa5e 60%, #ff7a18 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+    }
+
+    .hero-sub {
+      font-size: 16px;
+      color: #8c837b;
+      font-weight: 500;
+    }
+
+    /* SIDE CARD: COUNTDOWN & RELEASE KIT */
+    .side-panel {
+      width: 100%;
+      max-width: 380px;
+      background: var(--card-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Countdown Grid */
+    .timer-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .timer-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--orange-bright);
+    }
+
+    .timer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+
+    .time-slot {
+      background: #090807;
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 10px;
+      padding: 10px 4px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .time-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 22px;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1;
+    }
+
+    .time-unit {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #716962;
+    }
+
+    /* Release Week Kit Banner */
+    .kit-card {
+      background: linear-gradient(180deg, rgba(255, 122, 24, 0.12) 0%, rgba(230, 92, 0, 0.04) 100%);
+      border: 1px dashed rgba(255, 159, 67, 0.4);
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .kit-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #ffa552;
+    }
+
+    .kit-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--orange);
+      box-shadow: 0 0 6px var(--orange);
+    }
+
+    .kit-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+    }
+
+    .kit-desc {
+      font-size: 12.5px;
+      line-height: 1.5;
+      color: #d1c8c0;
+    }
+
+    .kit-desc strong {
+      color: #ffaa5e;
     }
 
     /* Toast */
@@ -194,7 +323,19 @@
 
     .toast.active {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 960px) {
+      main {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        gap: 36px;
+      }
+      .side-panel {
+        max-width: 440px;
+      }
     }
 
     @media (max-width: 640px) {
@@ -206,6 +347,9 @@
       }
       .brand-name {
         font-size: 20px;
+      }
+      main {
+        padding: 20px;
       }
     }
   </style>
@@ -230,11 +374,52 @@
     </div>
   </header>
 
-  <!-- MIDDLE: Coming November 15th -->
+  <!-- MAIN SECTION -->
   <main>
-    <h1 class="coming-title">
-      Coming <span>November 15th</span>
-    </h1>
+    <div class="hero-center">
+      <h1 class="coming-title">
+        Coming <span>November 15th</span>
+      </h1>
+      <p class="hero-sub">The ultimate custom SkyGen experience is almost here.</p>
+    </div>
+
+    <!-- SIDE PANEL: LIVE COUNTDOWN + RELEASE WEEK KIT -->
+    <aside class="side-panel">
+      <!-- Live Countdown -->
+      <div class="timer-wrap">
+        <div class="timer-header">
+          <span>Countdown to Launch</span>
+          <span>Nov 15, 2026</span>
+        </div>
+        <div class="timer-grid">
+          <div class="time-slot">
+            <span class="time-num" id="dNum">--</span>
+            <span class="time-unit">Days</span>
+          </div>
+          <div class="time-slot">
+            <span class="time-num" id="hNum">--</span>
+            <span class="time-unit">Hours</span>
+          </div>
+          <div class="time-slot">
+            <span class="time-num" id="mNum">--</span>
+            <span class="time-unit">Mins</span>
+          </div>
+          <div class="time-slot">
+            <span class="time-num" id="sNum">--</span>
+            <span class="time-unit">Secs</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Limited Release Week Kit Card -->
+      <div class="kit-card">
+        <div class="kit-badge">Exclusive Launch Perk</div>
+        <div class="kit-title">Release Week Kit</div>
+        <p class="kit-desc">
+          Only claimable for <strong>one week</strong> after launch. Once release week ends, this kit is locked and <strong>never coming back</strong>.
+        </p>
+      </div>
+    </aside>
   </main>
 
   <div class="toast" id="toast">Copied play.mangocraft.xyz!</div>
@@ -252,6 +437,35 @@
         }, 1800);
       });
     }
+
+    // Live Target Countdown: Nov 15, 2026 00:00:00 EST
+    const targetDate = new Date("2026-11-15T00:00:00-05:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      if (distance < 0) {
+        document.getElementById("dNum").innerText = "00";
+        document.getElementById("hNum").innerText = "00";
+        document.getElementById("mNum").innerText = "00";
+        document.getElementById("sNum").innerText = "00";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("dNum").innerText = String(days).padStart(2, "0");
+      document.getElementById("hNum").innerText = String(hours).padStart(2, "0");
+      document.getElementById("mNum").innerText = String(minutes).padStart(2, "0");
+      document.getElementById("sNum").innerText = String(seconds).padStart(2, "0");
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
   </script>
 </body>
 </html>
