@@ -3,20 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mango Craft &bull; Coming November 15th</title>
-  <meta name="description" content="Mango Craft - Coming November 15th. Play on Java & Bedrock: play.mangocraft.xyz">
+  <title>MangoCraft &bull; Custom SkyGen Minecraft Server</title>
+  <meta name="description" content="MangoCraft SkyGen launches November 15. Connect on Java and Bedrock at play.mangocraft.xyz">
   <link rel="icon" type="image/jpeg" href="logo.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800;900&family=JetBrains+Mono:wght@600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0c0a09;
-      --orange: #ff7a18;
-      --orange-bright: #ff9330;
-      --white: #ffffff;
-      --border: rgba(255, 255, 255, 0.08);
-      --card-bg: rgba(20, 17, 14, 0.7);
+      --bg: #000000;
+      --surface-card: #181818;
+      --surface-elevated: #1f1f1f;
+      --surface-input: #131209;
+      --border-subtle: #272727;
+      --border-strong: #313131;
+      --text-primary: #ffffff;
+      --text-secondary: #9b9b9b;
+      --text-muted: #666666;
+      --mango-accent: #f97316;
+      --mango-bright: #fb923c;
+      --green-live: #10b981;
+      --ease-base: cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     * {
@@ -25,202 +32,267 @@
       padding: 0;
     }
 
-    body {
+    html {
       background-color: var(--bg);
-      background-image: 
-        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(255, 122, 24, 0.15), transparent),
-        radial-gradient(circle at 1px 1px, #1a1612 1px, transparent 0);
-      background-size: 100% 100%, 32px 32px;
-      color: var(--white);
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      overflow-x: hidden;
+      color: var(--text-primary);
+      font-family: 'Geist', sans-serif;
+      text-rendering: optimizeLegibility;
       -webkit-font-smoothing: antialiased;
     }
 
-    /* TOP NAVBAR */
-    header {
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    /* TOP FLOATING NAV (Rule B7) */
+    .nav-wrapper {
+      position: sticky;
+      top: 16px;
+      z-index: 50;
+      display: flex;
+      justify-content: center;
+      padding: 0 16px;
+    }
+
+    nav {
       width: 100%;
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 24px 32px;
+      max-width: 1120px;
+      background: rgba(24, 24, 24, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 8px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
     }
 
-    /* TOP LEFT: Brand with Icon */
     .brand {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
       text-decoration: none;
-      color: var(--white);
+      color: var(--text-primary);
     }
 
     .brand-logo {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
       object-fit: cover;
-      border: 1px solid rgba(255, 122, 24, 0.3);
-      box-shadow: 0 4px 16px rgba(255, 122, 24, 0.2);
     }
 
     .brand-name {
-      font-size: 22px;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-    }
-
-    .brand-name span {
-      color: var(--orange-bright);
-    }
-
-    /* TOP RIGHT: IP Box with copy */
-    .ip-trigger {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      background: var(--card-bg);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--border);
-      padding: 8px 10px 8px 16px;
-      border-radius: 12px;
-      cursor: pointer;
-      user-select: none;
-      transition: all 0.2s ease;
-    }
-
-    .ip-trigger:hover {
-      border-color: rgba(255, 122, 24, 0.4);
-      background: rgba(26, 21, 17, 0.85);
-    }
-
-    .ip-trigger:active {
-      transform: scale(0.98);
-    }
-
-    .ip-meta {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 2px;
-    }
-
-    .ip-address {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 13.5px;
-      font-weight: 700;
-      color: #fff;
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: 600;
       letter-spacing: -0.01em;
     }
 
-    .ip-sub {
-      font-size: 10px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #9c9187;
+    .brand-name span {
+      color: var(--mango-bright);
     }
 
-    .ip-sub .tag {
-      color: var(--orange-bright);
-    }
-
-    .copy-button {
-      background: var(--orange);
-      color: #0c0a09;
-      font-size: 11px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      padding: 6px 12px;
+    /* SERVER IP INTERACTION (Rule B9 states) */
+    .ip-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--surface-input);
+      border: 1px solid var(--border-subtle);
       border-radius: 8px;
-      transition: background 0.15s ease;
+      padding: 4px 6px 4px 12px;
+      cursor: pointer;
+      user-select: none;
+      transition: background 300ms var(--ease-base), border-color 300ms var(--ease-base), transform 200ms var(--ease-base);
+    }
+
+    .ip-box:hover {
+      background: var(--surface-card);
+      border-color: var(--border-strong);
+    }
+
+    .ip-box:active {
+      transform: scale(0.98);
+    }
+
+    .ip-box:focus-visible {
+      outline: 2px solid var(--mango-accent);
+      outline-offset: 2px;
+    }
+
+    .ip-data {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .ip-text {
+      font-family: 'Geist Mono', monospace;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .ip-platforms {
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .btn-copy {
+      background: var(--mango-accent);
+      color: #000000;
+      font-family: inherit;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 600;
+      padding: 8px 12px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: opacity 200ms var(--ease-base);
       white-space: nowrap;
     }
 
-    .ip-trigger:hover .copy-button {
-      background: var(--orange-bright);
+    .ip-box:hover .btn-copy {
+      opacity: 0.9;
     }
 
-    /* MAIN CONTAINER: CENTER TITLE + SIDE COUNTDOWN & PERK */
+    /* MAIN CONTAINER */
     main {
       flex: 1;
       width: 100%;
-      max-width: 1400px;
+      max-width: 1120px;
       margin: 0 auto;
-      padding: 30px 32px;
+      padding: 64px 24px 80px;
       display: flex;
-      align-items: center;
-      justify-content: space-between;
+      flex-direction: column;
+      gap: 64px;
+    }
+
+    /* HERO SPLIT (Rule B5: Text gradient #ffffff -> #9b9b9b, max width 680px) */
+    .hero-split {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(320px, 380px);
       gap: 48px;
+      align-items: center;
     }
 
-    .hero-center {
-      flex: 1;
+    .hero-left {
+      max-width: 680px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
     }
 
-    h1.coming-title {
-      font-size: clamp(40px, 6.5vw, 76px);
-      font-weight: 900;
-      letter-spacing: -0.035em;
-      line-height: 1.05;
-      color: #ffffff;
-      margin-bottom: 12px;
+    .release-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 600;
+      color: var(--mango-bright);
     }
 
-    h1.coming-title span {
-      background: linear-gradient(180deg, #ffffff 10%, #ffaa5e 60%, #ff7a18 100%);
+    .dot-pulse {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--mango-accent);
+    }
+
+    h1.heading-1 {
+      font-size: 60px;
+      line-height: 60px;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      background: linear-gradient(90deg, #ffffff 0%, #9b9b9b 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      text-wrap: balance;
     }
 
-    .hero-sub {
+    .body-2 {
       font-size: 16px;
-      color: #8c837b;
+      line-height: 24px;
       font-weight: 500;
+      color: var(--text-secondary);
+      max-width: 680px;
+      text-wrap: pretty;
     }
 
-    /* SIDE CARD: COUNTDOWN & RELEASE KIT */
-    .side-panel {
-      width: 100%;
-      max-width: 380px;
-      background: var(--card-bg);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid var(--border);
-      border-radius: 20px;
+    /* SPECIFICATION STRIP */
+    .spec-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .spec-item {
+      background: var(--surface-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 8px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .spec-item strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* RIGHT COLUMN: COUNTDOWN & RELEASE CARD (Nested radius B3) */
+    .hero-panel {
+      background: var(--surface-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
       padding: 24px;
       display: flex;
       flex-direction: column;
       gap: 20px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
     }
 
-    /* Countdown Grid */
-    .timer-wrap {
+    .panel-header {
       display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .timer-header {
-      display: flex;
-      align-items: center;
       justify-content: space-between;
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--orange-bright);
+      align-items: baseline;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 12px;
     }
 
+    .title-5 {
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+    }
+
+    .caption-3 {
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 600;
+      color: var(--mango-bright);
+    }
+
+    /* TIMER GRID (nested radius = 16 - 8 = 8px) */
     .timer-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -228,96 +300,166 @@
     }
 
     .time-slot {
-      background: #090807;
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 10px;
-      padding: 10px 4px;
+      background: var(--surface-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 12px 4px;
       text-align: center;
       display: flex;
       flex-direction: column;
-      gap: 2px;
+      gap: 4px;
     }
 
-    .time-num {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 22px;
-      font-weight: 800;
-      color: #ffffff;
-      line-height: 1;
+    .time-val {
+      font-family: 'Geist Mono', monospace;
+      font-size: 24px;
+      line-height: 24px;
+      font-weight: 600;
+      color: var(--text-primary);
     }
 
     .time-unit {
-      font-size: 10px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: #716962;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 500;
+      color: var(--text-muted);
     }
 
-    /* Release Week Kit Banner */
-    .kit-card {
-      background: linear-gradient(180deg, rgba(255, 122, 24, 0.12) 0%, rgba(230, 92, 0, 0.04) 100%);
-      border: 1px dashed rgba(255, 159, 67, 0.4);
-      border-radius: 14px;
+    /* RELEASE KIT CARD */
+    .kit-box {
+      background: var(--surface-elevated);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
       padding: 16px;
       display: flex;
       flex-direction: column;
+      gap: 6px;
+    }
+
+    .kit-title {
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: 600;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
       gap: 8px;
     }
 
     .kit-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 11px;
-      font-weight: 800;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 600;
+      color: var(--mango-accent);
+      background: var(--surface-input);
+      border: 1px solid var(--border-subtle);
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    .body-5 {
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-wrap: pretty;
+    }
+
+    .body-5 strong {
+      color: var(--text-primary);
+    }
+
+    /* MANDATORY TAGLINE REVEAL SECTION (Rule B11) */
+    .tagline-section {
+      border-top: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 64px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .tagline-lead {
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: #ffa552;
+      letter-spacing: 0.05em;
+      color: var(--mango-bright);
     }
 
-    .kit-badge::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--orange);
-      box-shadow: 0 0 6px var(--orange);
+    .tagline-text {
+      font-size: 36px;
+      line-height: 40px;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      max-width: 680px;
+      text-wrap: balance;
     }
 
-    .kit-title {
-      font-size: 15px;
-      font-weight: 800;
+    .tagline-word {
+      display: inline-block;
+      color: rgba(255, 255, 255, 0.28);
+      transition: color 500ms var(--ease-base);
+    }
+
+    .tagline-word.active {
       color: #ffffff;
-      letter-spacing: -0.01em;
     }
 
-    .kit-desc {
-      font-size: 12.5px;
-      line-height: 1.5;
-      color: #d1c8c0;
+    @media (prefers-reduced-motion: reduce) {
+      .tagline-word {
+        color: #ffffff !important;
+      }
     }
 
-    .kit-desc strong {
-      color: #ffaa5e;
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border-subtle);
+      padding: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1120px;
+      width: 100%;
+      margin: 0 auto;
+      font-size: 12px;
+      line-height: 16px;
+      color: var(--text-muted);
     }
 
-    /* Toast */
+    .footer-links {
+      display: flex;
+      gap: 16px;
+    }
+
+    .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: color 200ms var(--ease-base);
+    }
+
+    .footer-links a:hover {
+      color: var(--text-primary);
+    }
+
+    /* TOAST FEEDBACK */
     .toast {
       position: fixed;
       bottom: 24px;
       left: 50%;
-      transform: translateX(-50%) translateY(20px);
-      background: #ffffff;
-      color: #0c0a09;
-      font-size: 13px;
-      font-weight: 700;
-      padding: 10px 20px;
-      border-radius: 9999px;
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+      transform: translateX(-50%) translateY(16px);
+      background: var(--surface-elevated);
+      color: var(--text-primary);
+      border: 1px solid var(--border-strong);
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 12px;
+      line-height: 16px;
+      font-weight: 600;
       opacity: 0;
       pointer-events: none;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform 300ms var(--ease-base), opacity 300ms var(--ease-base);
       z-index: 100;
     }
 
@@ -326,146 +468,224 @@
       transform: translateX(-50%) translateY(0);
     }
 
-    @media (max-width: 960px) {
-      main {
-        flex-direction: column;
-        justify-content: center;
-        text-align: center;
-        gap: 36px;
+    @media (max-width: 860px) {
+      .hero-split {
+        grid-template-columns: 1fr;
+        gap: 40px;
       }
-      .side-panel {
-        max-width: 440px;
+      h1.heading-1 {
+        font-size: 48px;
+        line-height: 48px;
+      }
+      .hero-panel {
+        max-width: 100%;
+      }
+      .tagline-text {
+        font-size: 28px;
+        line-height: 34px;
       }
     }
 
-    @media (max-width: 640px) {
-      header {
-        padding: 16px 20px;
+    @media (max-width: 500px) {
+      nav {
         flex-direction: column;
-        align-items: center;
-        gap: 16px;
+        align-items: stretch;
       }
-      .brand-name {
-        font-size: 20px;
+      .ip-box {
+        justify-content: space-between;
       }
-      main {
-        padding: 20px;
+      h1.heading-1 {
+        font-size: 36px;
+        line-height: 40px;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- TOP HEADER -->
-  <header>
-    <!-- TOP LEFT: Icon + Mango Craft -->
-    <a href="/" class="brand">
-      <img src="logo.jpg" alt="Mango Craft" class="brand-logo" />
-      <span class="brand-name">Mango<span>Craft</span></span>
-    </a>
+  <!-- FLOATING TOP NAVIGATION (Rule B7) -->
+  <div class="nav-wrapper">
+    <nav>
+      <a href="/" class="brand">
+        <img src="logo.jpg" alt="MangoCraft Logo" class="brand-logo">
+        <span class="brand-name">Mango<span>Craft</span></span>
+      </a>
 
-    <!-- TOP RIGHT: Server IP + Click to Copy + Bedrock & Java -->
-    <div class="ip-trigger" id="ipBox" onclick="copyIP()" title="Click to copy server IP">
-      <div class="ip-meta">
-        <span class="ip-address">play.mangocraft.xyz</span>
-        <span class="ip-sub"><span class="tag">Java</span> &bull; <span class="tag">Bedrock</span></span>
-      </div>
-      <div class="copy-button" id="copyBtn">Copy</div>
-    </div>
-  </header>
-
-  <!-- MAIN SECTION -->
-  <main>
-    <div class="hero-center">
-      <h1 class="coming-title">
-        Coming <span>November 15th</span>
-      </h1>
-      <p class="hero-sub">The ultimate custom SkyGen experience is almost here.</p>
-    </div>
-
-    <!-- SIDE PANEL: LIVE COUNTDOWN + RELEASE WEEK KIT -->
-    <aside class="side-panel">
-      <!-- Live Countdown -->
-      <div class="timer-wrap">
-        <div class="timer-header">
-          <span>Countdown to Launch</span>
-          <span>Nov 15, 2026</span>
+      <!-- PRIMARY ACTION: COPY SERVER ADDRESS (Rule B9) -->
+      <div class="ip-box" id="ipTrigger" onclick="copyServerAddress()" onkeydown="handleKey(event)" tabindex="0" role="button" aria-label="Copy server address play.mangocraft.xyz">
+        <div class="ip-data">
+          <span class="ip-text" id="ipAddressVal">play.mangocraft.xyz</span>
+          <span class="ip-platforms">Java 25565 &bull; Bedrock 19132</span>
         </div>
+        <button class="btn-copy" id="copyActionBtn" tabindex="-1">Copy IP</button>
+      </div>
+    </nav>
+  </div>
+
+  <main>
+    <!-- HERO SECTION (Rules A2, B4, B5) -->
+    <section class="hero-split">
+      <div class="hero-left">
+        <div class="release-tag">
+          <span class="dot-pulse"></span>
+          Opening November 15, 2026
+        </div>
+
+        <h1 class="heading-1">
+          SkyGen engineered<br>for fair competition
+        </h1>
+
+        <p class="body-2">
+          Build generators, optimize production cycles, and expand your island without pay to win mechanics. Fully crossplay compatible across modern Java and Bedrock clients.
+        </p>
+
+        <div class="spec-strip">
+          <div class="spec-item">
+            <span>Engine</span>
+            <strong>Purpur 1.21.4</strong>
+          </div>
+          <div class="spec-item">
+            <span>Compatibility</span>
+            <strong>Java &amp; Bedrock</strong>
+          </div>
+          <div class="spec-item">
+            <span>Economy</span>
+            <strong>Player Driven</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- SIDE PANEL: COUNTDOWN & RELEASE KIT (Rule B3 Nested Radii) -->
+      <aside class="hero-panel">
+        <div class="panel-header">
+          <span class="title-5">Time to Launch</span>
+          <span class="caption-3">Nov 15, 2026</span>
+        </div>
+
         <div class="timer-grid">
           <div class="time-slot">
-            <span class="time-num" id="dNum">--</span>
+            <span class="time-val" id="daysNum">00</span>
             <span class="time-unit">Days</span>
           </div>
           <div class="time-slot">
-            <span class="time-num" id="hNum">--</span>
+            <span class="time-val" id="hoursNum">00</span>
             <span class="time-unit">Hours</span>
           </div>
           <div class="time-slot">
-            <span class="time-num" id="mNum">--</span>
+            <span class="time-val" id="minsNum">00</span>
             <span class="time-unit">Mins</span>
           </div>
           <div class="time-slot">
-            <span class="time-num" id="sNum">--</span>
+            <span class="time-val" id="secsNum">00</span>
             <span class="time-unit">Secs</span>
           </div>
         </div>
-      </div>
 
-      <!-- Limited Release Week Kit Card -->
-      <div class="kit-card">
-        <div class="kit-badge">Exclusive Launch Perk</div>
-        <div class="kit-title">Release Week Kit</div>
-        <p class="kit-desc">
-          Only claimable for <strong>one week</strong> after launch. Once release week ends, this kit is locked and <strong>never coming back</strong>.
-        </p>
-      </div>
-    </aside>
+        <div class="kit-box">
+          <div class="kit-title">
+            <span>Release Week Kit</span>
+            <span class="kit-badge">Limited</span>
+          </div>
+          <p class="body-5">
+            Claimable exclusively during the first seven days following launch. Once release week concludes, this starter package is locked and <strong>never returns</strong>.
+          </p>
+        </div>
+      </aside>
+    </section>
+
+    <!-- MANDATORY TAGLINE REVEAL SECTION (Rule B11) -->
+    <section class="tagline-section" id="taglineSection">
+      <span class="tagline-lead">Core Architecture</span>
+      <p class="tagline-text" id="revealParagraph">
+        Built from the ground up on high performance dedicated hardware to deliver steady twenty ticks per second throughout massive generator operations.
+      </p>
+    </section>
   </main>
 
-  <div class="toast" id="toast">Copied play.mangocraft.xyz!</div>
+  <!-- FOOTER (Rule B10) -->
+  <footer>
+    <span>&copy; 2026 mangocraft.xyz</span>
+    <div class="footer-links">
+      <a href="https://discord.gg/mangocraft" target="_blank" rel="noopener">Discord Community</a>
+      <a href="https://admin.mangocraft.xyz">Node Manager</a>
+    </div>
+  </footer>
+
+  <div class="toast" id="copyToast" role="status" aria-live="polite">Copied play.mangocraft.xyz to clipboard</div>
 
   <script>
-    function copyIP() {
-      navigator.clipboard.writeText("play.mangocraft.xyz").then(() => {
-        const toast = document.getElementById("toast");
-        const btn = document.getElementById("copyBtn");
-        btn.innerText = "Copied!";
+    function copyServerAddress() {
+      const address = "play.mangocraft.xyz";
+      navigator.clipboard.writeText(address).then(() => {
+        const toast = document.getElementById("copyToast");
+        const btn = document.getElementById("copyActionBtn");
+        btn.innerText = "Copied";
         toast.classList.add("active");
         setTimeout(() => {
           toast.classList.remove("active");
-          btn.innerText = "Copy";
-        }, 1800);
+          btn.innerText = "Copy IP";
+        }, 1600);
       });
     }
 
-    // Live Target Countdown: Nov 15, 2026 00:00:00 EST
-    const targetDate = new Date("2026-11-15T00:00:00-05:00").getTime();
+    function handleKey(e) {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        copyServerAddress();
+      }
+    }
 
-    function updateCountdown() {
+    // Launch target date: Nov 15, 2026 00:00:00 EST
+    const targetLaunchTime = new Date("2026-11-15T00:00:00-05:00").getTime();
+
+    function updateLaunchTimer() {
       const now = new Date().getTime();
-      const distance = targetDate - now;
+      const diff = targetLaunchTime - now;
 
-      if (distance < 0) {
-        document.getElementById("dNum").innerText = "00";
-        document.getElementById("hNum").innerText = "00";
-        document.getElementById("mNum").innerText = "00";
-        document.getElementById("sNum").innerText = "00";
+      if (diff <= 0) {
+        document.getElementById("daysNum").innerText = "00";
+        document.getElementById("hoursNum").innerText = "00";
+        document.getElementById("minsNum").innerText = "00";
+        document.getElementById("secsNum").innerText = "00";
         return;
       }
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const secs = Math.floor((diff % (1000 * 60)) / 1000);
 
-      document.getElementById("dNum").innerText = String(days).padStart(2, "0");
-      document.getElementById("hNum").innerText = String(hours).padStart(2, "0");
-      document.getElementById("mNum").innerText = String(minutes).padStart(2, "0");
-      document.getElementById("sNum").innerText = String(seconds).padStart(2, "0");
+      document.getElementById("daysNum").innerText = String(days).padStart(2, "0");
+      document.getElementById("hoursNum").innerText = String(hours).padStart(2, "0");
+      document.getElementById("minsNum").innerText = String(mins).padStart(2, "0");
+      document.getElementById("secsNum").innerText = String(secs).padStart(2, "0");
     }
 
-    updateCountdown();
-    setInterval(updateCountdown, 1000);
+    updateLaunchTimer();
+    setInterval(updateLaunchTimer, 1000);
+
+    // Rule B11 Tagline Word-by-Word Scroll Reveal
+    const p = document.getElementById("revealParagraph");
+    if (p) {
+      const words = p.innerText.trim().split(/\s+/);
+      p.innerHTML = words.map(w => `<span class="tagline-word">${w}</span>`).join(" ");
+
+      const wordSpans = p.querySelectorAll(".tagline-word");
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            wordSpans.forEach((span, idx) => {
+              setTimeout(() => {
+                span.classList.add("active");
+              }, idx * 35);
+            });
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+
+      observer.observe(document.getElementById("taglineSection"));
+    }
   </script>
 </body>
 </html>
